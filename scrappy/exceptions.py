@@ -1,0 +1,2 @@
+class WebServerError(Exception):
+    pass
