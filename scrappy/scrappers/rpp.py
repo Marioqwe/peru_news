@@ -47,7 +47,7 @@ class RPP(Scrapper):
         soup = make_soup(target_url)
         tags = soup.find_all('script', {'type': 'application/ld+json'})
         if len(tags) != 1:
-            self.logger.info('|    \t* Failure - bad html [%s]', target_url)
+            self.logger.info('|    \t* Failure - bad html')
             RedisManager.save(target_url, True)  # set as prev failed.
             return
 
@@ -57,7 +57,7 @@ class RPP(Scrapper):
             # reason for 'strict' in stack overflow's 9295439.
             obj = json.loads(tags[0].string, strict=False)
         except json.JSONDecodeError:
-            self.logger.info('|    \t* Failure - bad json in html [%s]', target_url)
+            self.logger.info('|    \t* Failure - bad json in html')
             RedisManager.save(target_url, True)
             return
 
@@ -75,7 +75,7 @@ class RPP(Scrapper):
             }
 
             if len(ac['body']) > 5000:
-                self.logger.info('|    \t* Failure - json is too big in html [%s]', target_url)
+                self.logger.info('|    \t* Failure - json is too big in html')
                 RedisManager.save(target_url, True)
                 return
 
@@ -83,7 +83,7 @@ class RPP(Scrapper):
             self.logger.info('|    \t* Success - saved to db.')
             return ac
         except KeyError:
-            self.logger.info('|    \t* Failure - bad json key in html [%s]\n', target_url, traceback.format_exc())
+            self.logger.info('|    \t* Failure - bad json key in html\n%s', traceback.format_exc())
             RedisManager.save(target_url, True)
             return
         except Exception:
