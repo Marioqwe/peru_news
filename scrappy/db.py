@@ -29,11 +29,15 @@ class _RedisManager:
     def is_connected(self):
         return self._r is not None
 
-    def get(self, key):
+    def get(self, key, hashed=False):
         if self._r is None:
             return
 
-        url_hash = _hash(key)
+        if not hashed:
+            url_hash = _hash(key)
+        else:
+            url_hash = key
+
         if not self._r.exists(url_hash):
             return
 
