@@ -33,7 +33,7 @@ class _RedisManager:
         if self._r is None:
             return
 
-        url_hash = _hash(key)[:12]
+        url_hash = _hash(key)
         if not self._r.exists(url_hash):
             return
 
@@ -44,7 +44,7 @@ class _RedisManager:
         if self._r is None:
             return
 
-        url_hash = _hash(key)[:12]
+        url_hash = _hash(key)
         self._r.set(url_hash, val)
 
 
