@@ -4,3 +4,4 @@ __pycache__/
 dump.rdb
 **/prod.env
 .idea/
+!**/migrations/__init__.py
