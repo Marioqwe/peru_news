@@ -66,11 +66,11 @@ DATABASES = {
     'default': dj_database_url.config(
         default=db_url(
             engine='POSTGRES',
-            user=config('POSTGRES_USER'),
-            password=config('POSTGRES_PASSWORD'),
-            host='postgres',
-            port='5432',
-            name=config('POSTGRES_DB')
+            user=config('DB_USER'),
+            password=config('DB_PASSWORD'),
+            host=config('DB_HOST'),
+            port=config('DB_PORT'),
+            name=config('DB_DB')
         )
     )
 }
