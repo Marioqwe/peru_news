@@ -2,19 +2,8 @@
 import os
 import sys
 
-from decouple import config
-
-
-DJANGO_ENV = config('DJANGO_ENV')
-if DJANGO_ENV == 'production':
-    SETTINGS_MODULE = 'app.config.settings.prod'
-elif DJANGO_ENV == 'test':
-    SETTINGS_MODULE = 'app.config.settings.test'
-else:
-    SETTINGS_MODULE = 'app.config.settings.dev'
-
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", SETTINGS_MODULE)
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.config.settings.dev")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
