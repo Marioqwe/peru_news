@@ -1,7 +1,7 @@
 FROM python:3.7
 
 ENV PYTHONUNBUFFERED 1
-ENV HOME_DIR /usr/src/backend
+ENV HOME_DIR /usr/src/server
 
 RUN mkdir -p $HOME_DIR
 
