@@ -15,12 +15,15 @@ LOGGING = {
         'simple': {
             'format': '%(levelname)s %(message)s'
         },
+        'console': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+        },
     },
     'handlers': {
         'console': {
             'level': 'WARNING',
             'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+            'formatter': 'console'
         },
         'mail_admins': {
             'level': 'ERROR',
