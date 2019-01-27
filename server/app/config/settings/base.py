@@ -14,7 +14,7 @@ PROJECT_DIR = Path(ROOT_DIR, 'app')
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!8l&l#q63-!seup4c15th)(zb*qh3=xqad2^1k%1i9iutpzwll'
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 
 ALLOWED_HOSTS = ['*']
