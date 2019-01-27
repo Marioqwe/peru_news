@@ -16,7 +16,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - static:/usr/src/backend/static
+      - static:/usr/src/server/static
 
   nginx:
     image: nginx:latest
