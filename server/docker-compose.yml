@@ -8,9 +8,9 @@ volumes:
 services:
   django:
     build:
-      context: ./server
+      context: ""
     env_file:
-      - ./config/env/prod.env
+      - ./.env
     environment:
       DJANGO_ENV: production
     ports:
@@ -40,7 +40,7 @@ services:
 
   postgres:
     env_file:
-      - ./config/env/prod.env
+      - ./.env
     image: postgres:9.6
     ports:
       - "5432"
