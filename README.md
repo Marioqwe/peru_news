@@ -5,7 +5,7 @@ so that you don't scrap the same article twice.
 
 Run it with
 
-    python peru_news/app.py
+    python scrappy/app.py
     
     
 Supported websites
