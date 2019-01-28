@@ -7,8 +7,9 @@ volumes:
 
 services:
   django:
+    image: perunews/django
     build:
-      context: ""
+      context: .
     env_file:
       - ./.env
     environment:
