@@ -34,6 +34,7 @@ services:
       - ./ssl/etc/letsencrypt/live/www.perunews.xyz/privkey.pem:/etc/letsencrypt/live/www.perunews.xyz/privkey.pem
       - ./ssl/etc/letsencrypt/live/perunews.xyz/fullchain.pem:/etc/letsencrypt/live/perunews.xyz/fullchain.pem
       - ./ssl/etc/letsencrypt/live/perunews.xyz/privkey.pem:/etc/letsencrypt/live/perunews.xyz/privkey.pem
+      - ../client/index.html:/usr/share/nginx/html/index.html
       - static:/usr/share/nginx/html/static
 
   redis:
