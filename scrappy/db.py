@@ -1,10 +1,16 @@
 import hashlib
 
 import redis
-from decouple import config
+
+from scrappy import settings
 
 
 __all__ = ('RedisManager',)
+
+
+REDIS = getattr(settings, 'REDIS', None)
+if REDIS is None:
+    raise ValueError('\'REDIS\' settings not set.')
 
 
 def _hash(val):
@@ -19,9 +25,9 @@ class _RedisManager:
     def connect(self):
         try:
             self._r = redis.StrictRedis(
-                host=config('REDIS_HOST'),
-                port=config('REDIS_PORT'),
-                password=config('REDIS_PASSWORD'),
+                host=REDIS.HOST,
+                port=REDIS.PORT,
+                password=REDIS.PASSWORD,
             )
         except redis.exceptions.ConnectionError:
             pass
