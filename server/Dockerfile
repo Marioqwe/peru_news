@@ -10,7 +10,7 @@ RUN pip install --upgrade pip \
 
 COPY . $HOME_DIR
 
-RUN pip install --no-cache-dir -r $HOME_DIR/requirements.txt
+RUN pip install --no-cache-dir -r $HOME_DIR/requirements/prod.txt
 
 EXPOSE 8000
 
