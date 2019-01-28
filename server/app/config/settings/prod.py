@@ -1,4 +1,24 @@
+import logging
+
+import sentry_sdk
+from django.utils.log import DEFAULT_LOGGING
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import LoggingIntegration
+
 from .base import *
+
+
+# SENTRY SDK
+# ------------------------------------------------------------------------------
+sentry_logging = LoggingIntegration(
+    level=logging.INFO,        # Capture info and above as breadcrumbs
+    event_level=logging.ERROR  # Send errors as events
+)
+
+sentry_sdk.init(
+    dsn=config('SENTRY_DSN'),
+    integrations=[sentry_logging, DjangoIntegration()],
+)
 
 
 # DEBUG CONFIGURATION
@@ -8,38 +28,38 @@ DEBUG = False
 
 # LOGGING CONFIGURATION
 # ------------------------------------------------------------------------------
+LOG_LEVEL = config('DJANGO_LOG_LEVEL', default='info').upper()
+LOGGING_CONFIG = None
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
         'console': {
             'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
         },
+        'django.server': DEFAULT_LOGGING['formatters']['django.server'],
     },
     'handlers': {
         'console': {
-            'level': 'WARNING',
             'class': 'logging.StreamHandler',
-            'formatter': 'console'
+            'formatter': 'console',
         },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
+        'django.server': DEFAULT_LOGGING['handlers']['django.server'],
+        'sentry': {
+            'level': 'WARNING',
+            'class': 'sentry_sdk.integrations.logging.SentryHandler',
         },
     },
     'loggers': {
-        'django': {
-            'handlers': ['console', 'mail_admins'],
-            'propagate': True,
+        '': {
             'level': 'WARNING',
+            'handlers': ['console', 'sentry'],
         },
+        'django.server': DEFAULT_LOGGING['loggers']['django.server'],
         'app': {
-            'handlers': ['console', 'mail_admins'],
-            'propagate': True,
-            'level': 'WARNING',
+            'level': LOG_LEVEL,
+            'handlers': ['console', 'sentry'],
+            'propagate': False,
         },
-    }
+    },
 }
