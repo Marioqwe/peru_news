@@ -1,13 +1,18 @@
 import requests
-from decouple import config
 
+from scrappy import settings
 from scrappy.exceptions import WebServerError
+
+
+API_SETTINGS = getattr(settings, 'API', None)
+if API_SETTINGS is None:
+    raise ValueError('\'API\' setting not set.')
 
 
 class WebServer:
 
-    end_point = config('API_ENDPOINT')
-    api_key = config('API_KEY')
+    end_point = API_SETTINGS.ENDPOINT
+    api_key = API_SETTINGS.API_KEY
 
     def send_payload(self, payload):
         try:
