@@ -3,4 +3,4 @@
 __pycache__/
 dump.rdb
 .idea/
-!**/migrations/__init__.py
+/**/migrations/00*
