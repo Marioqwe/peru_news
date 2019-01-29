@@ -52,7 +52,7 @@ class RPP(Scrapper):
             return
 
         parts = target_url.split('/')
-        section = parts[1]
+        section = parts[3]
         try:
             # reason for 'strict' in stack overflow's 9295439.
             obj = json.loads(tags[0].string, strict=False)
