@@ -153,6 +153,7 @@ class RPP(Scrapper):
                         'date': target_date,
                         'source': self.id_,
                     })
+                    self.logger.info('Posted to web server.')
                 except WebServerError as e:
                     self.logger.critical('Error: scrapper [%s], section [%s], date [%s]: Error %s'
                                          % (self.name, section, target_date, e))
