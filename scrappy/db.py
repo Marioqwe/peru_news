@@ -25,9 +25,9 @@ class _RedisManager:
     def connect(self):
         try:
             self._r = redis.StrictRedis(
-                host=REDIS.HOST,
-                port=REDIS.PORT,
-                password=REDIS.PASSWORD,
+                host=REDIS.get('HOST'),
+                port=REDIS.get('PORT'),
+                password=REDIS.get('PASSWORD'),
             )
         except redis.exceptions.ConnectionError:
             pass

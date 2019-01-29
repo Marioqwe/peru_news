@@ -2,17 +2,11 @@ from decouple import config
 
 
 API = {
-    'ENDPOINT': config('API_ENDPOINT'),
     'API_KEY': config('API_KEY'),
 }
 
 
-PRODUCTION = config('PRODUCTION', False)
-
-
-# Set to True if you want urls that failed to be scrapped to be scrapped again
-# on the next request.
-RETRY_FAILED_URLS = False
+PRODUCTION = config('PRODUCTION', default=False, cast=bool)
 
 
 REDIS = {
@@ -20,3 +14,8 @@ REDIS = {
     'PASSWORD': config('REDIS_PASSWORD'),
     'PORT': config('REDIS_PORT'),
 }
+
+
+# Set to True if you want urls that failed to be scrapped to be scrapped again
+# on the next request.
+RETRY_FAILED_URLS = False
