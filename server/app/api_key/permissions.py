@@ -18,4 +18,5 @@ class HasAPIAccess(permissions.BasePermission):
             else:
                 return False
         except ObjectDoesNotExist:
-            return False
+            # note: set to false to make api private.
+            return True
