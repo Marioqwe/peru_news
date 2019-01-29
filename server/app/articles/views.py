@@ -46,6 +46,24 @@ def sources(request):
     }, status=status.HTTP_200_OK)
 
 
+@api_view(['GET'])
+@permission_classes((HasAPIAccess, ))
+def sections(request):
+    return Response({
+        'status': 'ok',
+        'sections': [
+            'politica',
+            'mundo',
+            'economia',
+            'actualidad',
+            'deportes',
+            'entretenimiento',
+            'tecnologia',
+            'ciencia',
+        ],
+    }, status=status.HTTP_200_OK)
+
+
 @api_view(['GET', 'POST'])
 @permission_classes((HasAPIAccess, ))
 def articles(request):
