@@ -47,7 +47,6 @@ def sources(request):
 
 
 @api_view(['GET', 'POST'])
-@permission_classes((HasAPIAccess, ))
 def articles(request):
     if request.method == 'GET':
         source = request.GET.get('source', None)
