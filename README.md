@@ -26,11 +26,27 @@ There are 2 main endpoints:
 
 <h4>Request Parameters</h4>
 
+All of the following are to be used with the `/articles` endpoint.
+
  * **source** - A string of identifiers for the news sources you want information for. Use the `/sources` endpoint for a list
               of supported sources.
+ * **date** - The date articles were published in the format `YYYY-MM-DD`.
+ * **section** - Section within the source. See 'supported sections' for available options.
  * **pageSize** - The number of results to return per page (request). 20 is the default, 100 is the maximum.
  * **page** - Use this to page through the results if the total results found is greater than the page size.
 
-<h4>Supported sources</h4>
+<h4>Supported Sources</h4>
 
  * rpp - RPP Noticias (http://www.rpp.pe).
+
+
+<h4>Supported Sections</h4>
+
+ * politica
+ * mundo
+ * economia
+ * actualidad
+ * deportes
+ * entretenimiento
+ * tecnologia
+ * ciencia
