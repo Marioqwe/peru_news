@@ -67,7 +67,6 @@ module.exports = {
         // With the setting, it re-compiles whenever changes are saved.
         watchOptions: { aggregateTimeout: 300, poll: 1000 },
         inline: true,
-        headers: { 'Access-Control-Allow-Origin': '*' },
         historyApiFallback: true,
         host: '0.0.0.0',
         hot: true,
