@@ -5,7 +5,7 @@ so that you don't scrap the same article twice.
 
 The main site is here: https://www.perunews.xyz/.
 
-It's still in development, but you can check the rest api here: https://api.perunews.xyz/v1/sources/.
+It's still in development, but you can check the rest api here: https://api.perunews.xyz/v1/articles?source=rpp.
 
 Run the scrapper with
 
