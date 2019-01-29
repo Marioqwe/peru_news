@@ -28,9 +28,7 @@ There are 2 main endpoints:
 
  * **source** - A string of identifiers for the news sources you want information for. Use the `/sources` endpoint for a list
               of supported sources.
-           
  * **pageSize** - The number of results to return per page (request). 20 is the default, 100 is the maximum.
-
  * **page** - Use this to page through the results if the total results found is greater than the page size.
 
 <h4>Supported sources</h4>
