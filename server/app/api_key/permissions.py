@@ -15,8 +15,9 @@ class HasAPIAccess(permissions.BasePermission):
                 return True
             elif request.method == 'POST':
                 return api_key.can_post
-            else:
-                return False
+            return False
         except ObjectDoesNotExist:
-            # note: set to false to make api private.
-            return True
+            if request.method == 'GET':
+                # note: set to false to make api private.
+                return True
+            return False
