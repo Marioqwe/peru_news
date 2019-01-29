@@ -117,9 +117,8 @@ def articles(request):
         if section is None:
             return bad_request('No section provided.')
 
-        # default=None causes getlist to return an empty list.
-        data = request.data.getlist('data', default=-1)
-        if data == -1:
+        data = request.data.get('data', None)
+        if not data:
             return bad_request('No data provided.')
 
         cache_key = '%s:%s:%s' % (source, date, section)
