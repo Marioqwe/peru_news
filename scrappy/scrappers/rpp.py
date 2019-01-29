@@ -29,7 +29,7 @@ class RPP(Scrapper):
         self.logger = logger
         self.webserver = WebServer()
 
-    def _scrap_article(self, loc):
+    def _scrap_article(self, loc, section):
         target_url = self.BASE_URL + loc
         self.logger.info('|---\t%s', target_url)
 
@@ -51,8 +51,6 @@ class RPP(Scrapper):
             RedisManager.save(target_url, True)  # set as prev failed.
             return
 
-        parts = target_url.split('/')
-        section = parts[3]
         try:
             # reason for 'strict' in stack overflow's 9295439.
             obj = json.loads(tags[0].string, strict=False)
@@ -109,7 +107,7 @@ class RPP(Scrapper):
         for a in a_list:
             try:
                 a_loc = a.figure.a.get('href')
-                a_obj = self._scrap_article(a_loc)
+                a_obj = self._scrap_article(a_loc, section)
                 yield a_obj
             except Exception:
                 self.logger.error('Error scrapping [%s]\n%s', url, traceback.format_exc())
