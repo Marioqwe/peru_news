@@ -8,6 +8,11 @@ from sentry_sdk.integrations.logging import LoggingIntegration
 from .base import *
 
 
+# DEBUG CONFIGURATION
+# ------------------------------------------------------------------------------
+DEBUG = False
+
+
 # SENTRY SDK
 # ------------------------------------------------------------------------------
 sentry_logging = LoggingIntegration(
@@ -21,9 +26,9 @@ sentry_sdk.init(
 )
 
 
-# DEBUG CONFIGURATION
+# DJANGO CORS HEADERS
 # ------------------------------------------------------------------------------
-DEBUG = False
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # LOGGING CONFIGURATION

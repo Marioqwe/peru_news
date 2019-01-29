@@ -6,6 +6,11 @@ from .base import *
 DEBUG = True
 
 
+# DJANGO CORS HEADERS
+# ------------------------------------------------------------------------------
+CORS_ORIGIN_ALLOW_ALL = True
+
+
 # LOGGING CONFIGURATION
 # ------------------------------------------------------------------------------
 LOGGING = {
