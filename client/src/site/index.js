@@ -83,7 +83,7 @@ class MainPage extends React.Component {
                     {sections.map(name => (
                         <Route
                             key={name}
-                            path={`/${name}`}
+                            path={`/${name !== 'all' ? name : ''}`}
                             render={props => <FilteredArticleBoard {...props} filter={name} />}
                         />
                     ))}
