@@ -97,8 +97,8 @@ def articles(request):
         if page_size > MAX_PAGE_SIZE:
             page_size = MAX_PAGE_SIZE
 
-        if section is None:
-            _LOGGER.info('No section provided.')
+        if section is None or section == 'all':
+            _LOGGER.info('No section (or all section) provided.')
             pattern = '%s:%s:*' % (source, date)
             keys = cache.iter_keys(pattern)
         else:
