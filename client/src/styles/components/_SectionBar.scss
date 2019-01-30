@@ -1,0 +1,15 @@
+.sections-bar {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  & > a {
+    color: black;
+    margin: 0.25rem;
+  }
+}
+
+.selected-section {
+  text-decoration: none;
+}

@@ -5,6 +5,30 @@ html {
 
 body {
   background: #F7F8F8;
+  font-family: 'Roboto', sans-serif;
   height: 100%;
   overflow: auto;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__header {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    align-self: center;
+    font-size: 2rem;
+    margin: 0.8rem;
+  }
+
+  &__body {
+    margin-top: 40px;
+  }
 }

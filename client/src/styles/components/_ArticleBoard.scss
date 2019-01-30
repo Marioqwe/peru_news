@@ -1,0 +1,10 @@
+.article-board {
+  display: flex;
+  flex-direction: column;
+  padding: 2.625rem 2.75rem;
+
+  &__loading-div {
+    align-self: center;
+    justify-content: center;
+  }
+}

@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import './styles/index.scss';
 
-import Root from './site';
+import MainPage from './site';
 
 const render = (Component) => {
     ReactDOM.render(
-        <Component />,
+        <Router>
+            <Component />
+        </Router>,
         document.getElementById('react-root'),
     );
 };
 
-render(Root);
+render(MainPage);
 
 if (module.hot) {
-    module.hot.accept('./site', () => { render(Root); });
+    module.hot.accept('./site', () => { render(MainPage); });
 }
