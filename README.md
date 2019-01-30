@@ -15,7 +15,7 @@ Run the scrapper with
 
 <h2>Api</h2>
 
-You can find the api [here](https://api.perunews.xyz).
+You can find the api [here](https://api.perunews.xyz/v1/sources).
 
 <h4>Endpoints</h4>
 There are 2 main endpoints:
