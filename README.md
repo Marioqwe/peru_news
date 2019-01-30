@@ -1,6 +1,6 @@
 <h1>Peru News</h1>
 
-The main site is [here](https://www.perunews.xyz).
+The main site is [here](https://www.perunews.xyz/all).
 
 
 <h2>Scrapper</h2>
