@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -27,6 +28,9 @@ const RULES = [
 ];
 
 const PLUGINS = [
+    new HtmlWebPackPlugin({
+        template: './index.html',
+    }),
     new MiniCssExtractPlugin({
         filename: './build/css/main.css',
     }),
