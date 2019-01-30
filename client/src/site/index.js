@@ -18,7 +18,7 @@ class MainPage extends React.Component {
             sections: [],
             filter: undefined,
             isFetching: false,
-            currentSection: 'all',
+            currentSection: '',
         };
     }
 
@@ -41,7 +41,7 @@ class MainPage extends React.Component {
 
                 const data = res['data'];
                 if (data['status'] === 'ok') {
-                    this.setState({ sections: ['all', ...data['sections']], });
+                    this.setState({ sections: data['sections'], });
                 }
 
                 // should not happen.

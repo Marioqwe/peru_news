@@ -87,11 +87,8 @@ class ArticleBoard extends React.Component {
         return (
             <div className="article-board">
                 {articles.map(a => {
-                    if (filter !== undefined && filter !== 'all') {
-                        if (a['section'] !== filter) {
-                            return;
-                        }
-                    }
+                    if (filter !== undefined
+                        && a['section'] !== filter) { return; }
                     return (
                         <Article
                             key={a['headline']}
