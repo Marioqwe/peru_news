@@ -99,7 +99,7 @@ class ArticleBoard extends React.Component {
     };
 
     render() {
-        const { articles } = this.state;
+        const { articles, isFetching } = this.state;
         const { filter } = this.props;
         return (
             <div className="article-board">
@@ -130,7 +130,7 @@ class ArticleBoard extends React.Component {
                     onClick={this.handleLoadMore}
                     className="article-board__load-btn"
                 >
-                    LOAD MORE
+                    <i className={`fa fa-refresh fa-spin ${!isFetching && 'hidden'}`} />LOAD MORE
                 </button>
             </div>
         );
