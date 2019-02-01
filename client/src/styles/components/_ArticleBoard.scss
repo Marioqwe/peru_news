@@ -10,9 +10,11 @@
 
   &__load-btn {
     align-self: center;
+    background: white;
     color: #232b2b;
-    margin-top: 2rem;
-    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    width: 40%;
   }
 
   &__chunk-header {
@@ -28,5 +30,13 @@
   .article-board {
     margin: 2rem;
     padding: 0.5rem;
+
+    &__load-btn {
+      align-self: center;
+      background: none;
+      color: #232b2b;
+      margin-top: 2rem;
+      width: 100%;
+    }
   }
 }
