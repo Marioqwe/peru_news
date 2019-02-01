@@ -1,10 +1,6 @@
-from scrappy import settings
 from scrappy.logger import Logger
 from scrappy.scrappers.base import Scrapper
 from scrappy.utils import make_soup
-
-
-RETRY_FAILED_URLS = getattr(settings, 'RETRY_FAILED_URLS', False)
 
 
 class RPP(Scrapper):
