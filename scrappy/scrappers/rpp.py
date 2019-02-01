@@ -1,14 +1,9 @@
-import datetime
 import json
-import pytz
-import re
 import traceback
 from html import unescape
 
 from scrappy import settings
-from scrappy._http import WebServer
 from scrappy.db import RedisManager
-from scrappy.exceptions import WebServerError
 from scrappy.scrappers.base import Scrapper
 from scrappy.utils import make_soup
 
@@ -24,10 +19,6 @@ class RPP(Scrapper):
     BASE_URL = 'http://www.rpp.pe'
     SECTIONS = ('politica', 'mundo', 'economia', 'actualidad', 'deportes',
                 'entretenimiento', 'tecnologia', 'ciencia')
-
-    def __init__(self, logger):
-        self.logger = logger
-        self.webserver = WebServer()
 
     def _scrap_article(self, loc, section):
         target_url = self.BASE_URL + loc
@@ -123,35 +114,3 @@ class RPP(Scrapper):
                 if ac is not None:
                     data.append(ac)
         return data
-
-    def run(self, section=None, date=None):
-        """
-        Scrap a section with given date.
-        If a section is not provided, use all possible sections.
-        If a date is not provided, use today's date in peruvian time.
-        """
-        if date is not None:
-            if not re.match('\d{4}-\d{2}-\d{2}', str(date)):
-                raise TypeError(date, '%s is not a valid date.' % date)
-            target_date = date
-        else:  # Use current peruvian date by default.
-            target_date = datetime.datetime.now(pytz.timezone('America/Lima'))
-            target_date = target_date.strftime('%Y-%m-%d')
-
-        # Scrap all sections if None is specified.
-        sections = [section] if section is not None else self.SECTIONS
-
-        for section in sections:
-            data = self._scrap_section(section, target_date)
-            if data:
-                try:
-                    self.webserver.send_payload({
-                        'data': data,
-                        'section': section,
-                        'date': target_date,
-                        'source': self.id_,
-                    })
-                    self.logger.info('Posted to web server.')
-                except WebServerError as e:
-                    self.logger.critical('Error: scrapper [%s], section [%s], date [%s]: Error %s'
-                                         % (self.name, section, target_date, e))
