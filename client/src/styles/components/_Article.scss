@@ -1,22 +1,17 @@
 .article {
-  border: solid;
-  border-width: 1px;
-  border-color: black;
-  margin: 0.35em;
-  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2rem;
+  margin: 0.5rem;
 
   &__title {
-    font-size: 1.2rem;
+    color: #232b2b;
     font-weight: 500;
-    padding: 8px;
-  }
-
-  &__url {
-    font-size: 0.7rem;
     text-decoration: none;
   }
 
-  &__summary {
-    padding: 8px;
+  &__url {
+    color: gray;
+    font-size: 0.7rem;
   }
 }

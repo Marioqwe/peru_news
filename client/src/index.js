@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import './styles/index.scss';
 
-import MainPage from './site';
+import Root from './site';
 
 const render = (Component) => {
     ReactDOM.render(
@@ -15,8 +15,8 @@ const render = (Component) => {
     );
 };
 
-render(MainPage);
+render(Root);
 
 if (module.hot) {
-    module.hot.accept('./site', () => { render(MainPage); });
+    module.hot.accept('./site', () => { render(Root); });
 }

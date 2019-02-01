@@ -1,22 +1,20 @@
 import React from 'react';
 
+import { normalizeUrl } from '../utils';
+
 const Article = ({
     url,
     source,
     title,
-    summary,
 }) => (
     <div className="article">
         <div className="article__header">
-            <div className="article__title">
+            <a href={url} className="article__title">
                 {title}&nbsp;
-                <a href={url} className="article__url">
-                    [source]
-                </a>
-            </div>
-        </div>
-        <div className="article__summary">
-            {summary}
+            </a>
+            <span className="article__url">
+                ({normalizeUrl(url)})
+            </span>
         </div>
     </div>
 );

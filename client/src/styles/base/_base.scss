@@ -29,6 +29,13 @@ body {
   }
 
   &__body {
+    align-self: center;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-top: 40px;
+    min-width: 600px;
+    width: 90%;
   }
 }
