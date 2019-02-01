@@ -24,6 +24,12 @@ export function toStrFormat(date) {
 }
 
 export function prettyStrFormat(strDate) {
-    const date = new Date(strDate);
+    const dateArray = strDate.split('-');
+    // see stackoverflow.com/questions/2488313/
+    const date = new Date(
+        parseInt(dateArray[0]),
+        parseInt(dateArray[1]) - 1,
+        parseInt(dateArray[2])
+    );
     return date.toDateString();
 }
