@@ -2,8 +2,6 @@
   align-self: left;
   display: flex;
   flex-direction: column;
-  margin: 2rem;
-  padding: 0.5rem;
 
   &__loading-div {
     align-self: center;
@@ -22,5 +20,12 @@
     font-size: 1.2rem;
     font-weight: 300;
     margin: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .article-board {
+    margin: 2rem;
+    padding: 0.5rem;
   }
 }

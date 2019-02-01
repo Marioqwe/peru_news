@@ -1,8 +1,12 @@
 .article {
+  background: white;
+  border-radius: 2px;
+  border: 1px solid lightgrey;
   display: flex;
   flex-direction: row;
   font-size: 1.2rem;
-  margin: 0.5rem;
+  margin: 0.15rem 0;
+  padding: 0.5rem;
 
   &__title {
     color: #232b2b;
@@ -13,5 +17,14 @@
   &__url {
     color: gray;
     font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .article {
+    background: none;
+    border-style: none;
+    margin: 0.5rem;
+    padding: 0;
   }
 }
