@@ -3,7 +3,7 @@ import time
 
 from scrappy import settings
 from scrappy.logger import Logger
-from scrappy.scrappers.rpp import RPP
+from scrappy.scrappers import engines
 
 
 class App:
@@ -16,10 +16,12 @@ class App:
         self.T = 60 * 5
 
     def run_dev(self):
-        RPP(self.logger).run(section='politica')
+        for engine in engines:
+            engine(self.logger).run(section='politica')
 
     def run_prod(self):
-        RPP(self.logger).run()
+        for engine in engines:
+            engine(self.logger).run()
 
     def run(self):
         try:
