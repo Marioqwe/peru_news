@@ -4,9 +4,10 @@ import Article from './Article';
 import * as date from '../date';
 import * as api from '../api';
 import * as utils from '../utils';
+import { LocalStorageManager } from '../storage';
 import { PAGE_SIZE } from '../settings';
 
-class ArticleBoard extends React.Component {
+class _ArticleBoard extends React.Component {
 
     constructor(props) {
         super(props);
@@ -20,7 +21,6 @@ class ArticleBoard extends React.Component {
             totalResults: 0,
         };
     }
-
     componentDidMount() {
         this._isMounted = true;
         this.fetchArticles();
@@ -51,7 +51,7 @@ class ArticleBoard extends React.Component {
 
         this.setState({ isFetching: true, currentDate }, () => {
             api.fetchArticles({
-                source: 'rpp',
+                sources: LocalStorageManager.getState() || [],
                 section: filter,
                 date: strDate,
                 page: nextPage,
@@ -136,5 +136,11 @@ class ArticleBoard extends React.Component {
         );
     }
 }
+
+const ArticleBoard = ({ filter }) => (
+    <_ArticleBoard
+        filter={filter}
+    />
+);
 
 export default ArticleBoard;

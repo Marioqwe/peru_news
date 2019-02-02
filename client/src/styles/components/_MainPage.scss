@@ -12,8 +12,10 @@
 
   &__title {
     align-self: center;
+    color: #232b2b;
     font-size: 2rem;
     margin: 0.8rem;
+    text-decoration: none;
   }
 
   &__body {
@@ -28,7 +30,6 @@
 
 @media (min-width: 768px) {
   .page__body {
-    background: white;
     margin-top: 40px;
     width: 90%;
   }

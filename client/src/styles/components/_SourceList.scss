@@ -1,0 +1,45 @@
+.source-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  &__item {
+    align-self: center;
+    background: white;
+    color: #232b2b;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    width: 70%;
+  }
+
+  &__continue-btn {
+    align-self: center;
+    color: #232b2b;
+    margin-top: 2rem;
+  }
+}
+
+.selected {
+  background: #257AFD !important;
+  color: white !important;
+}
+
+@media (min-width: 768px) {
+  .source-list {
+    &__item {
+      align-self: center;
+      background: white;
+      color: #232b2b;
+      cursor: pointer;
+      font-size: 1.5rem;
+      margin: 0.5rem;
+      padding: 2rem;
+      text-align: center;
+      max-width: 18%;
+    }
+  }
+}
