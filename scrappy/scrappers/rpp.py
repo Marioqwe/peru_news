@@ -9,11 +9,12 @@ class RPP(Scrapper):
     name = 'RPP Noticias'
 
     BASE_URL = 'http://www.rpp.pe'
-    SECTIONS = ('politica', 'mundo', 'economia', 'actualidad', 'deportes',
-                'entretenimiento', 'tecnologia', 'ciencia')
+    SECTIONS = ('politica', 'mundo', 'economia',
+                'actualidad', 'deportes', 'entretenimiento',)
 
     def _scrap_section(self, section, date):
         url = '%s/archivo/%s/%s/' % (self.BASE_URL, section, date)
+        self.logger.info('%s', url)
         soup = make_soup(url)
         res_set = soup.find_all('div', {'class': 'col-primary'})
         if len(res_set) != 1:
@@ -34,9 +35,10 @@ class RPP(Scrapper):
                     'headline': title,
                     'section': section,
                     'url': url,
-                    'publisedAt': date,
+                    'publishedAt': date,
                 })
 
+        self.logger.info('Found [%s] articles', len(data))
         return data
 
 

@@ -27,6 +27,7 @@ class Scrapper(object):
         If a section is not provided, use all possible sections.
         If a date is not provided, use today's date in peruvian time.
         """
+        self.logger.info('Scrapping %s', self.name)
         if date is not None:
             if not re.match('\d{4}-\d{2}-\d{2}', str(date)):
                 raise TypeError(date, '%s is not a valid date.' % date)

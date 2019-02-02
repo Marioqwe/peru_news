@@ -7,7 +7,7 @@ from scrappy.utils import make_soup
 
 class Peru21(Scrapper):
 
-    id = 'peru21'
+    id_ = 'peru21'
     name = 'Peru 21'
 
     BASE_URL = 'https://peru21.pe'
@@ -16,6 +16,7 @@ class Peru21(Scrapper):
 
     def _scrap_section(self, section, date):
         url = '%s/archivo/%s/%s/' % (self.BASE_URL, section, date)
+        self.logger.info('%s', url)
         soup = make_soup(url)
         res_set = soup.find_all('div', {'class': 'column-flows'})
         if len(res_set) != 1:
@@ -37,9 +38,10 @@ class Peru21(Scrapper):
                     'headline': title,
                     'section': section,
                     'url': url,
-                    'publishedAt': date,
+                    'publishedAt': str(date),
                 })
 
+        self.logger.info('Found [%s] articles', len(data))
         return data
 
 
