@@ -28,14 +28,13 @@ class RPP(Scrapper):
             if h3 and time:
                 title = h3.a.get_text()
                 url = self.BASE_URL + h3.a.get('href')
-                date = time.get('data-x')
-
+                iso_date = time.get('data-x')
                 data.append({
                     'source': {'id': self.id_, 'name': self.name},
                     'headline': title,
                     'section': section,
                     'url': url,
-                    'publishedAt': date,
+                    'publishedAt': iso_date,
                 })
 
         self.logger.info('Found [%s] articles', len(data))

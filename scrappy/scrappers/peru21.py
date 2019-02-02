@@ -2,6 +2,7 @@ from datetime import datetime
 
 from scrappy.logger import Logger
 from scrappy.scrappers.base import Scrapper
+from scrappy.settings import TIMEZONE
 from scrappy.utils import make_soup
 
 
@@ -31,14 +32,14 @@ class Peru21(Scrapper):
                 title = h2.a.get_text()
                 url = self.BASE_URL + h2.a.get('href')
                 timestamp = time.get('datetime')
-                date = datetime.fromtimestamp(float(timestamp))
-
+                date = datetime.fromtimestamp(float(timestamp), tz=TIMEZONE)
+                iso_date = date.isoformat()
                 data.append({
                     'source': {'id': self.id_, 'name': self.name},
                     'headline': title,
                     'section': section,
                     'url': url,
-                    'publishedAt': str(date),
+                    'publishedAt': iso_date,
                 })
 
         self.logger.info('Found [%s] articles', len(data))

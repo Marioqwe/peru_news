@@ -1,3 +1,4 @@
+import pytz
 from decouple import config
 
 
@@ -19,3 +20,6 @@ REDIS = {
 # Set to True if you want urls that failed to be scrapped to be scrapped again
 # on the next request.
 RETRY_FAILED_URLS = False
+
+
+TIMEZONE = pytz.timezone('America/Lima')
