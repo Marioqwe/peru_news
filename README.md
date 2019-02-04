@@ -5,8 +5,7 @@ The main site is [here](https://www.perunews.xyz/).
 
 <h2>Scrapper</h2>
 
-Use it to scrap articles from Peruvian news websites. You will want to install redis
-so that you don't scrap the same article twice.
+Use it to scrap articles from Peruvian news websites.
 
 Run the scrapper with
 
