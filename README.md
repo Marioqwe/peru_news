@@ -39,7 +39,7 @@ All of the following are to be used with the `/articles` endpoint.
 <h4>Supported Sources</h4>
 
  * rpp - RPP Noticias (https://rpp.pe/).
- * peru21 - Peru 21 (https://peru21.pe/)
+ * peru21 - Peru 21 (https://peru21.pe/).
 
 <h4>Supported Sections</h4>
 
