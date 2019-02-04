@@ -47,9 +47,9 @@ class Scrapper(object):
                 try:
                     self.webserver.send_payload({
                         'data': data,
-                        'section': section,
-                        'date': target_date,
-                        'source': self.id_,
+                        # 'section': section,
+                        # 'date': target_date,
+                        'source': {'id': self.id_, 'name': self.name},
                     })
                     self.logger.info('Posted to web server.')
                 except WebServerError as e:
