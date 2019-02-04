@@ -21,7 +21,8 @@ You can find the api [here](https://api.perunews.xyz/v1/sources).
 There are 2 main endpoints:
 
  * Sources `/v1/sources` - returns all sources that are currently being scrapped.
- * Articles `/v1/articles?source=[SOURCE]` - returns all scrapped articles from a given source. See the 'supported sources'
+ * Sections `/v1/sections` - returns all available sections.
+ * Articles `/v1/articles/?source=[SOURCE]` - returns all scrapped articles from a given source. See the 'supported sources'
      for a list of available sources. 
 
 <h4>Request Parameters</h4>
@@ -37,8 +38,8 @@ All of the following are to be used with the `/articles` endpoint.
 
 <h4>Supported Sources</h4>
 
- * rpp - RPP Noticias (http://www.rpp.pe).
-
+ * rpp - RPP Noticias (https://rpp.pe/).
+ * peru21 - Peru 21 (https://peru21.pe/)
 
 <h4>Supported Sections</h4>
 
