@@ -10,3 +10,9 @@ export const SECTIONS = [
     'tecnologia',
     'ciencia',
 ];
+
+export const SOURCES = [
+    {name: 'RPP', id: 'rpp'},
+    {name: 'Peru 21', id: 'peru21'},
+    {name: 'El Comercio', id: 'el_comercio'},
+];

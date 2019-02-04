@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { LocalStorageManager } from '../storage';
+import { SOURCES } from '../settings';
 
 class SourceList extends React.Component {
     constructor(props) {
@@ -30,18 +31,15 @@ class SourceList extends React.Component {
                 <div className="source-list__text">
                     Select sources you want to follow.
                 </div>
-                <div
-                    className={`source-list__item ${selectedSources.includes('rpp') ? 'selected' : ''}`}
-                    onClick={() => this.handleClickSource('rpp')}
-                >
-                    RPP
-                </div>
-                <div
-                    className={`source-list__item ${selectedSources.includes('peru21') ? 'selected' : ''}`}
-                    onClick={() => this.handleClickSource('peru21')}
-                >
-                    Peru 21
-                </div>
+                {SOURCES.map(src => (
+                    <div
+                        key={src.id}
+                        className={`source-list__item ${selectedSources.includes(src.id) ? 'selected' : ''}`}
+                        onClick={() => this.handleClickSource(src.id)}
+                    >
+                        {src.name}
+                    </div>
+                ))}
                 <Link to="/politica" className="source-list__continue-btn">
                     Continue
                 </Link>
