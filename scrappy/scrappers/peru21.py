@@ -31,11 +31,12 @@ class Peru21(Scrapper):
             if h2 and time:
                 title = h2.a.get_text()
                 url = self.BASE_URL + h2.a.get('href')
+                aid = url.split('-')[-1]
                 timestamp = time.get('datetime')
                 date = datetime.fromtimestamp(float(timestamp), tz=TIMEZONE)
                 iso_date = date.isoformat()
                 data.append({
-                    'source': {'id': self.id_, 'name': self.name},
+                    'aid': aid,
                     'headline': title,
                     'section': section,
                     'url': url,

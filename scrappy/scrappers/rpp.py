@@ -28,9 +28,10 @@ class RPP(Scrapper):
             if h3 and time:
                 title = h3.a.get_text()
                 url = self.BASE_URL + h3.a.get('href')
+                aid = url.split('-')[-1]
                 iso_date = time.get('data-x')
                 data.append({
-                    'source': {'id': self.id_, 'name': self.name},
+                    'aid': aid,
                     'headline': title,
                     'section': section,
                     'url': url,
