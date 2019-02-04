@@ -1,5 +1,7 @@
 export const PAGE_SIZE = 10;
 
+export const API_URL = 'https://api.perunews.xyz/v1';
+
 export const SECTIONS = [
     'politica',
     'mundo',

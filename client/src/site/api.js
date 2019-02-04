@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://api.perunews.xyz/v1';
+import { API_URL } from './settings';
 
 export function fetchArticles(
     {
@@ -14,7 +14,7 @@ export function fetchArticles(
     onError,
 ) {
     const params = `source=${sources.join(',')}&section=${section}&pageSize=${pageSize}&page=${page}&date=${date}`;
-    axios.get(`${BASE_URL}/articles/?${params}`)
+    axios.get(`${API_URL}/articles/?${params}`)
         .then(res => onSuccess(res))
         .catch(err => onError(err));
 }
