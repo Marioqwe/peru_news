@@ -4,10 +4,13 @@ import pytz
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
+from .models import Article
+from .serializers import ArticleSerializer
 from ..api_key.permissions import HasAPIAccess
 
 
@@ -71,6 +74,7 @@ def articles(request):
         source = request.GET.get('source', None)
         if source is None:
             return bad_request('No source provided.')
+        source = source.split(',')
 
         section = request.GET.get('section', None)
 
@@ -79,6 +83,7 @@ def articles(request):
             # Use current peruvian date by default.
             date = datetime.datetime.now(pytz.timezone('America/Lima'))
             date = date.strftime('%Y-%m-%d')
+        date = date.split('-')
 
         # Use to page through results if total results
         # is greater than page_size.
@@ -98,21 +103,21 @@ def articles(request):
             page_size = MAX_PAGE_SIZE
 
         if section is None or section == 'all':
-            _LOGGER.info('No section (or all section) provided.')
-            pattern = '%s:%s:*' % (source, date)
-            keys = cache.iter_keys(pattern)
+            articles = Article.objects.filter(sid__in=source,
+                                              published_at__year=date[0],
+                                              published_at__month=date[1],
+                                              published_at__day=date[2])
         else:
-            _LOGGER.info('Section \'%s\' provided.' % section)
-            keys = ['%s:%s:%s' % (source, date, section)]
+            section = section.split(',')
+            articles = Article.objects.filter(sid__in=source, section__in=section,
+                                              published_at__year=date[0],
+                                              published_at__month=date[1],
+                                              published_at__day=date[2])
 
         data = []
-        for cache_key in keys:
-            _LOGGER.info('Retrieving \'%s\' from cache.' % cache_key)
-            saved_data = cache.get(cache_key)
-            if saved_data is not None:
-                data.extend(saved_data)
-            else:
-                _LOGGER.info('\'%s\' does not exist in cache.' % cache_key)
+        for a in articles:
+            serializer = ArticleSerializer(a)
+            data.append(serializer.data)
 
         bottom = (page_num - 1) * page_size
         top = bottom + page_size
@@ -127,23 +132,33 @@ def articles(request):
         if source is None:
             return bad_request('No source provided.')
 
-        date = request.data.get('date', None)
-        if date is None:
-            return bad_request('No date provided.')
-
-        section = request.data.get('section', None)
-        if section is None:
-            return bad_request('No section provided.')
-
+        # todo: allow data to not only be a list.
         data = request.data.get('data', None)
-        if not data:
+        if data is None:
             return bad_request('No data provided.')
 
-        cache_key = '%s:%s:%s' % (source, date, section)
-        _LOGGER.info('Saving cache_key \'%s\'' % cache_key)
-        cache.set(cache_key, data, timeout=None)
+        for a in data:
+            adata = {
+                'sid': source.get('id'),
+                'sname': source.get('name'),
+                'aid': a.get('aid'),
+                'headline': a.get('headline'),
+                'section': a.get('section'),
+                'url': a.get('url'),
+                'published_at': a.get('publishedAt'),
+            }
 
-        return Response({
-            'status': 'ok',
-            'message': 'Created.',
-        }, status=status.HTTP_201_CREATED)
+            try:
+                instance = Article.objects.get(sid=adata['sid'], aid=adata['aid'])
+            except ObjectDoesNotExist:
+                instance = None
+
+            if instance is None:
+                serializer = ArticleSerializer(data=adata)
+            else:
+                serializer = ArticleSerializer(instance, data=adata)
+
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+        return Response(status=status.HTTP_201_CREATED)
