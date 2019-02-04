@@ -27,6 +27,9 @@ class SourceList extends React.Component {
         const { selectedSources } = this.state;
         return (
             <div className="source-list">
+                <div className="source-list__text">
+                    Select sources you want to follow.
+                </div>
                 <div
                     className={`source-list__item ${selectedSources.includes('rpp') ? 'selected' : ''}`}
                     onClick={() => this.handleClickSource('rpp')}

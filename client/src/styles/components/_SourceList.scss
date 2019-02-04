@@ -4,6 +4,13 @@
   justify-content: center;
   height: 100%;
 
+  &__text {
+    align-self: center;
+    color: #232b2b;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
   &__item {
     align-self: center;
     background: white;
