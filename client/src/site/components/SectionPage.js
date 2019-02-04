@@ -7,7 +7,7 @@ const SectionPage = ({ match }) => {
     const { section } = match.params;
     return (
         <React.Fragment>
-            <SectionBar />
+            <SectionBar section={section} />
             <ArticleBoard key={section} filter={section} />
         </React.Fragment>
     );
