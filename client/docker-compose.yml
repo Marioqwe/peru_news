@@ -5,7 +5,7 @@ services:
     image: perunews/node-ui
     build:
       context: .
-    environment:
-      NODE_ENV: production
+    env_file:
+      - ./.env
     volumes:
        - ./:/usr/src/client

@@ -4,6 +4,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const S3Plugin = require('webpack-s3-plugin');
 
 const CSS_RULE = {
     test: /\.(sa|sc|c)ss$/,
@@ -38,6 +39,18 @@ const PLUGINS = [
         'process.env': {
             NODE_ENV: JSON.stringify('production'),
         },
+    }),
+    new S3Plugin({
+        s3Options: {
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+            region: process.env.AWS_S3_REGION_NAME,
+        },
+        s3UploadOptions: {
+            Bucket: process.env.AWS_STORAGE_BUCKET_NAME,
+        },
+        basePath: 'static',
+        directory: './prod/build/',
     }),
 ];
 
