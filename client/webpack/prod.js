@@ -50,7 +50,7 @@ const PLUGINS = [
             Bucket: process.env.AWS_STORAGE_BUCKET_NAME,
         },
         basePath: 'static',
-        directory: './prod/build/',
+        directory: './prod',
     }),
 ];
 
