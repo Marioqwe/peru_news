@@ -4,6 +4,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const S3Plugin = require('webpack-s3-plugin');
 
 const CSS_RULE = {
@@ -40,6 +41,12 @@ const PLUGINS = [
             NODE_ENV: JSON.stringify('production'),
         },
     }),
+    new CompressionPlugin({
+        test: /\.(js)$/,
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        deleteOriginalAssets: true,
+    }),
     new S3Plugin({
         s3Options: {
             accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -48,6 +55,11 @@ const PLUGINS = [
         },
         s3UploadOptions: {
             Bucket: process.env.AWS_STORAGE_BUCKET_NAME,
+            ContentEncoding(fileName) {
+                if (/\.gz/.test(fileName)) {
+                    return 'gzip';
+                }
+            },
         },
         basePath: 'static',
         directory: './prod',
