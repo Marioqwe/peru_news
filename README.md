@@ -50,4 +50,3 @@ All of the following are to be used with the `/articles` endpoint.
  * deportes
  * entretenimiento
  * tecnologia
- * ciencia
