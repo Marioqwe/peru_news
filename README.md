@@ -39,7 +39,7 @@ All of the following are to be used with the `/articles` endpoint.
 
  * rpp - RPP Noticias (https://rpp.pe/).
  * peru21 - Peru 21 (https://peru21.pe/).
- * el_comersio - El Comercio (https://elcomercio.pe/).
+ * el_comercio - El Comercio (https://elcomercio.pe/).
 
 <h4>Supported Sections</h4>
 
